@@ -19,4 +19,4 @@ before_install:
   - git config user.name 'travis-build'
 
 script:
-  - ember test
+  - COVERAGE=true ember test
