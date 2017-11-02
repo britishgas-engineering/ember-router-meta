@@ -1,0 +1,22 @@
+---
+language: node_js
+node_js:
+  - '6'
+sudo: false
+dist: trusty
+cache:
+  directories:
+    - node_modules
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+before_install:
+  - git config user.name 'travis-build'
+
+script:
+  - ember test
