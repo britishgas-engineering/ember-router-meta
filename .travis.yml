@@ -20,3 +20,6 @@ before_install:
 
 script:
   - COVERAGE=true ember test
+
+after_success:
+  - .travis/codecoverage.sh
