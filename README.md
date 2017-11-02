@@ -16,12 +16,12 @@ Router.map(function() {
 This can be used with any attribute name, providing that ember does not currently use it (such as resetNamespace).
 
 
-# route-metadata Service
+## route-metadata Service
 
 To gain access to the meta data the service `route-metadata` will need to be injected.
 `routeMetadata: Ember.inject.service();`
 
-# getMetaDataByRoute(route, attrs(optional)) 
+## getMetaDataByRoute(route, attrs(optional)) 
 
 All that is required to get the meta data of the route is the route name.
 `this.get('routeMetadata').getMetaDataByRoute('example.route')` 
@@ -34,7 +34,7 @@ If the child does not have a specified attribute it will check it's parent route
 By default the only attribute that will be returned is the pageName, this can be changed by using `setAttrs()` to override `pageName` as the default attribute.
 
 
-# editRoute(route, key, val)
+## editRoute(route, key, val)
 
 To edit a route's data at run time `editRoute()` can be used to change a specific attribute.
 
@@ -42,7 +42,7 @@ To edit a route's data at run time `editRoute()` can be used to change a specifi
 @param {String} key Key of attribute to change
 @param {Object} val Attribute to change
 
-# getRoute(route)
+## getRoute(route)
 
 `getRoute(route)` can also be used to get the route meta data, but it will not filter unwanted attributes and will not attempt to find missing attributes from parent routes.
 
