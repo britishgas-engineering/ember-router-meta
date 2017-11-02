@@ -1,6 +1,5 @@
 import Ember from 'ember';
 export default {
-  //_router: Ember.RouterDSL.prototype.route,
   routeMetadata: null,
   oldRoute: Ember.RouterDSL.prototype.route,
   init (metaDataService) {

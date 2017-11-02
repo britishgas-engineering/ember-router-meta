@@ -17,10 +17,6 @@ addons:
 
 before_install:
   - git config user.name 'travis-build'
-  - chmod +x .travis/codecoverage.sh
 
 script:
   - COVERAGE=true ember test
-
-after_success:
-  - .travis/codecoverage.sh
