@@ -21,7 +21,7 @@ test('Ember Router Meta enviroment varibles set', function(assert) {
   let callback = sinon.spy()
 
   this.appInstance.container = {
-    lookupFactory() {
+    resolveRegistration() {
       return {
         emberRouterMeta: {
           defaultAttrs: [
@@ -51,11 +51,6 @@ test('Ember Router Meta enviroment varibles set', function(assert) {
 
 test('Ember Router Meta enviroment varibles not set', function(assert) {
   let callback = sinon.spy()
-  this.appInstance.container = {
-    lookupFactory() {
-      return {};
-    }
-  };
 
   this.appInstance.lookup = function() {
     return {
