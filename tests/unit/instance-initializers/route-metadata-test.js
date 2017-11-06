@@ -20,18 +20,16 @@ module('Unit | Instance Initializer | route metadata', {
 test('Ember Router Meta enviroment varibles set', function(assert) {
   let callback = sinon.spy()
 
-  this.appInstance.container = {
-    resolveRegistration() {
-      return {
-        emberRouterMeta: {
-          defaultAttrs: [
-            'pageName',
-            'section',
-            'pageType'
-          ]
-        }
-      };
-    }
+  this.appInstance.resolveRegistration = function () {
+    return {
+      emberRouterMeta: {
+        defaultAttrs: [
+          'pageName',
+          'section',
+          'pageType'
+        ]
+      }
+    };
   };
 
   this.appInstance.lookup = function() {
