@@ -17,10 +17,57 @@ module('Unit | Instance Initializer | route metadata', {
   }
 });
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  initialize(this.appInstance);
+test('Ember Router Meta enviroment varibles set', function(assert) {
+  let callback = sinon.spy()
 
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
+  this.appInstance.container = {
+    lookupFactory() {
+      return {
+        emberRouterMeta: {
+          defaultAttrs: [
+            'pageName',
+            'section',
+            'pageType'
+          ]
+        }
+      };
+    }
+  };
+
+  this.appInstance.lookup = function() {
+    return {
+      setAttrs () {
+        callback()
+      },
+      _registerRoute() {
+        return null;
+      }
+    }
+  };
+
+  initialize(this.appInstance);
+  assert.equal(callback.called, true, 'callback should run once');
+});
+
+test('Ember Router Meta enviroment varibles not set', function(assert) {
+  let callback = sinon.spy()
+  this.appInstance.container = {
+    lookupFactory() {
+      return {};
+    }
+  };
+
+  this.appInstance.lookup = function() {
+    return {
+      setAttrs () {
+        callback()
+      },
+      _registerRoute() {
+        return null;
+      }
+    }
+  };
+
+  initialize(this.appInstance);
+  assert.equal(callback.called, false, 'callback should not run');
 });
