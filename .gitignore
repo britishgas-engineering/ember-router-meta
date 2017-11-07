@@ -1,6 +1,7 @@
 # compiled output
 /tmp
 /dist
+/coverage
 
 # dependencies
 /node_modules
