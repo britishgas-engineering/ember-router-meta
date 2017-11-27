@@ -1,4 +1,5 @@
 import { moduleFor, test } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleFor('service:route-metadata', 'Unit | Service | route metadata', {
   // Specify the other units that are required for this test.
@@ -114,15 +115,14 @@ test('getMetaDataByRoute - get attributes from parent, missing info', function(a
       pageName: 'Booking page'
     }
   },
-  route = 'example.dashboard.book.appointment';
+  route = 'example.dashboard.book.appointment',
+  spy = sinon.spy();
+  Ember.Logger.warn = spy;
   service.set('_routes', _routes);
   service.setAttrs(attrsNames);
   assert.expect(1);
-  try {
-    service.getMetaDataByRoute(route);
-  } catch (e) {
-    assert.equal(e, `Route: example. Can't complete metadata object. Missing section, `);
-  }
+  service.getMetaDataByRoute(route);
+  assert.equal(spy.callCount, 1, 'Logger with warn message was called');
 });
 
 test('getMetaDataByRoute - null/undefined route', function(assert) {

@@ -1,5 +1,6 @@
 import dsl from '../utils/dsl-route-extend';
 import Ember from 'ember';
+const {Logger} = Ember;
 
 export default Ember.Service.extend({
   _routes: {},
@@ -100,7 +101,7 @@ export default Ember.Service.extend({
           metaData[key] = parentMeta[key];
         });
       } else if (missingAttrs.length && routesLeft.length === 1) {
-        throw `Route: ${route}. Can't complete metadata object. Missing ${this.optionsToString(missingAttrs)}`;
+        Logger.warn(`Route: ${route}. Can't complete metadata object. Missing ${this.optionsToString(missingAttrs)}`);
       }
     } else if (routesLeft.length > 1) {
       metaData = this.getMetaDataByRoute(parentRoute, attrs);
