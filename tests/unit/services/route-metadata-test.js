@@ -116,13 +116,13 @@ test('getMetaDataByRoute - get attributes from parent, missing info', function(a
     }
   },
   route = 'example.dashboard.book.appointment',
-  spy = sinon.spy();
-  Ember.Logger.warn = spy;
+  spy = sinon.stub(Ember.Logger, "warn");
   service.set('_routes', _routes);
   service.setAttrs(attrsNames);
   assert.expect(1);
   service.getMetaDataByRoute(route);
   assert.equal(spy.callCount, 1, 'Logger with warn message was called');
+  spy.restore();
 });
 
 test('getMetaDataByRoute - null/undefined route', function(assert) {
