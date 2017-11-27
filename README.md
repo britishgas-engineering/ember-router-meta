@@ -26,7 +26,7 @@ The service `route-metadata` will store the meta data of each route, so will nee
 
 All that is required to get the meta data of the route is the route name.
 `this.get('routeMetadata').getMetaDataByRoute('example.route')` 
-The second parameter `attrs` is used to specify the attribute/s you would like.
+The second parameter `attrs` is used to specify the attribute's you would like.
 
 `this.get('routeMetadata').getMetaDataByRoute('example.route', ['pageName', pageType, section]);`
 
@@ -36,7 +36,7 @@ By default the only attribute that will be returned is the pageName, this can be
 
 ```
 ...
-  emberRouterMeta: [
+  emberRouterMeta: {
     defaultAttrs: [
       'pageName',
       'pageType',
