@@ -116,8 +116,14 @@ export default Ember.Service.extend({
    * @return {undefined}
    */
   editRoute(route, key, val) {
-    let metaData = this.getRoute(route);
+    const metaData = this.getRoute(route);
     if (metaData) {
+      const childrenRoutes = Object.keys(this._routes).filter((key) => key.includes(route));
+      childrenRoutes.forEach((childrenRoute) => {
+        //need to reset those as if going previously to a children route
+        //the metaData would have been filled with the previous parent value
+        this._routes[childrenRoute][key] = null;
+      });
       metaData[key] = val;
     } else {
       throw `Route: ${route} was not found`;

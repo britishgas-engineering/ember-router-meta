@@ -53,6 +53,23 @@ test('editRoute - check for edited route', function(assert) {
   assert.equal(service.getRoute(route).pageName, val, 'Route has been edited');
 });
 
+test('editRoute - reset childrenRoutes', function(assert) {
+  let service = this.subject(),
+  _routes = {
+    example: {},
+    'example.nested': {pageName: 'Example Nested'},
+    'other-route': {pageName: 'Other Route'}
+  },
+  route = 'example',
+  key = 'pageName',
+  val = 'Dashboard';
+  service.set('_routes',_routes);
+  service.editRoute(route, key, val);
+  assert.equal(service.getRoute(route).pageName, val, 'Route has been edited');
+  assert.equal(service.getRoute('example.nested').pageName, null, 'Child route value has been set to null');
+  assert.equal(service.getRoute('other-route').pageName, 'Other Route', 'non-child route value has been set to null');
+});
+
 test('getMetaDataByRoute - route with all attributes', function(assert) {
   let service = this.subject(),
   attrsNames = ['pageName', 'pageType', 'section'],
