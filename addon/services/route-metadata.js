@@ -20,7 +20,7 @@ export default Ember.Service.extend({
     if (attrs && attrs.length) {
       this._attributes = attrs;
     } else {
-      throw `Attrs could not be set, the array must contain at least one attribute`;
+      throw `ember-router-meta: Attrs could not be set, the array must contain at least one attribute`;
     }
   },
 
@@ -32,7 +32,7 @@ export default Ember.Service.extend({
    */
   _registerRoute (route, options = {}) {
     if (this._routes[route]) {
-      throw `Route ${route} has already been registered`;
+      throw `ember-router-meta: Route ${route} has already been registered`;
     } else {
       this._routes[route] = options;
     }
@@ -84,7 +84,7 @@ export default Ember.Service.extend({
    */
   getMetaDataByRoute(route, attrs = this._attributes, fetchFromParent = true) {
     if (!route) {
-      throw 'Route is Null or undefined';
+      throw 'ember-router-meta: Route is Null or undefined';
     }
     let metaData = copy(this.getRoute(route), true),
       parentRoute = this._getParentRoute(route),
@@ -119,7 +119,7 @@ export default Ember.Service.extend({
     if (metaData) {
       metaData[key] = val;
     } else {
-      throw `Route: ${route} was not found`;
+      throw `ember-router-meta: Route: ${route} was not found`;
     }
   },
   optionsToString(options) {
