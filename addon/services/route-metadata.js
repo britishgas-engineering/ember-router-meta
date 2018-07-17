@@ -1,6 +1,6 @@
 import dsl from '../utils/dsl-route-extend';
 import Ember from 'ember';
-const {Logger} = Ember;
+const {Logger, copy} = Ember;
 
 export default Ember.Service.extend({
   _routes: {},
@@ -81,11 +81,11 @@ export default Ember.Service.extend({
    * section {String} The section that this page belogs too, will inherit parents section if not specified
    * @return {Object} metaData found for specified Route
    */
-  getMetaDataByRoute(route, attrs = this._attributes) {
+  getMetaDataByRoute(route, attrs = this._attributes, fetchFromParent = true) {
     if (!route) {
       throw 'Route is Null or undefined';
     }
-    let metaData = this.getRoute(route),
+    let metaData = copy(this.getRoute(route), true),
       parentRoute = this._getParentRoute(route),
       routesLeft = route.split('.');
     if (metaData) {
@@ -96,10 +96,12 @@ export default Ember.Service.extend({
         }
       });
       if (missingAttrs.length && routesLeft.length > 1) {
-        let parentMeta = this.getMetaDataByRoute(parentRoute, missingAttrs);
-        missingAttrs.forEach((key) => {
-          metaData[key] = parentMeta[key];
-        });
+        if (fetchFromParent) {
+          let parentMeta = this.getMetaDataByRoute(parentRoute, missingAttrs);
+          missingAttrs.forEach((key) => {
+            metaData[key] = parentMeta[key];
+          });
+        }
       } else if (missingAttrs.length && routesLeft.length === 1) {
         Logger.warn(`Route: ${route}. Can't complete metadata object. Missing ${this.optionsToString(missingAttrs)}`);
       }
