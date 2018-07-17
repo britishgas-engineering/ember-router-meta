@@ -25,7 +25,7 @@ test('_registerRoute - check for existing route', function(assert) {
   try {
     service._registerRoute(route);
   } catch(e) {
-      assert.equal(e, `Route ${route} has already been registered`, 'Expect route already registered error')
+      assert.equal(e, `ember-router-meta: Route ${route} has already been registered`, 'Expect route already registered error')
   }
 })
 
@@ -36,7 +36,7 @@ test('editRoute - Invalid route error', function(assert) {
   try {
     service.editRoute(route);
   } catch (e) {
-    assert.equal(e, `Route: ${route} was not found`, 'Route not found error should be shown');
+    assert.equal(e, `ember-router-meta: Route: ${route} was not found`, 'Route not found error should be shown');
   }
 });
 
@@ -143,7 +143,7 @@ test('getMetaDataByRoute - null/undefined route', function(assert) {
   try {
     service.getMetaDataByRoute(route);
   } catch (e) {
-    assert.equal(e, `Route is Null or undefined`);
+    assert.equal(e, `ember-router-meta: Route is Null or undefined`);
   }
 });
 
@@ -167,7 +167,7 @@ test('setAttrs - null', function(assert) {
   try {
     service.setAttrs(null);
   } catch (e) {
-    assert.equal(e, 'Attrs could not be set, the array must contain at least one attribute', 'Correct Error thrown');
+    assert.equal(e, 'ember-router-meta: Attrs could not be set, the array must contain at least one attribute', 'Correct Error thrown');
   }
 });
 
@@ -177,6 +177,6 @@ test('setAttrs - Empty Array', function(assert) {
   try {
     service.setAttrs([]);
   } catch (e) {
-    assert.equal(e, 'Attrs could not be set, the array must contain at least one attribute', 'Correct Error thrown');
+    assert.equal(e, 'ember-router-meta: Attrs could not be set, the array must contain at least one attribute', 'Correct Error thrown');
   }
 });
