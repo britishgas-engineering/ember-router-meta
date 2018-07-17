@@ -1,6 +1,6 @@
 import dsl from '../utils/dsl-route-extend';
 import Ember from 'ember';
-const {Logger, copy} = Ember;
+const {copy} = Ember;
 
 export default Ember.Service.extend({
   _routes: {},
@@ -74,7 +74,8 @@ export default Ember.Service.extend({
    * if a route is missing an attribute it will bubble up and take its parent's if applicable
    * Key Values that can be used in this.route()
    * @param {String} route The current route
-   * @param {Object} attrs
+   * @param {Object} attrs optional attributes to fetch
+   * @param {Boolean} fetchFromParent
    * e.g.
    * pageName {String} The name you would like to use for that route
    * pageType {String} The type of page it is, will inherit parents type if not specified
@@ -95,15 +96,11 @@ export default Ember.Service.extend({
           missingAttrs.push(key);
         }
       });
-      if (missingAttrs.length && routesLeft.length > 1) {
-        if (fetchFromParent) {
-          let parentMeta = this.getMetaDataByRoute(parentRoute, missingAttrs);
-          missingAttrs.forEach((key) => {
-            metaData[key] = parentMeta[key];
-          });
-        }
-      } else if (missingAttrs.length && routesLeft.length === 1) {
-        Logger.warn(`Route: ${route}. Can't complete metadata object. Missing ${this.optionsToString(missingAttrs)}`);
+      if (missingAttrs.length && routesLeft.length > 1 && fetchFromParent) {
+        let parentMeta = this.getMetaDataByRoute(parentRoute, missingAttrs);
+        missingAttrs.forEach((key) => {
+          metaData[key] = parentMeta[key];
+        });
       }
     } else if (routesLeft.length > 1) {
       metaData = this.getMetaDataByRoute(parentRoute, attrs);

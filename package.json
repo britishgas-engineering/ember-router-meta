@@ -1,6 +1,6 @@
 {
   "name": "ember-router-meta",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Add metadata to your routes using the application router",
   "keywords": [
     "ember-addon"
