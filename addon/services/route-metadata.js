@@ -103,7 +103,9 @@ export default Ember.Service.extend({
         });
       }
     } else if (routesLeft.length > 1) {
-      metaData = this.getMetaDataByRoute(parentRoute, attrs);
+      if (fetchFromParent) {
+        metaData = this.getMetaDataByRoute(parentRoute, attrs);
+      }
     }
     return this._removeUnnecessaryAttrs(metaData, attrs);
   },
