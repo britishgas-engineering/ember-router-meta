@@ -1,6 +1,6 @@
 {
   "name": "ember-router-meta",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Add metadata to your routes using the application router",
   "keywords": [
     "ember-addon"
@@ -32,7 +32,7 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-source": "~3.2.0",
-    "ember-try": "^0.2.23",
+    "ember-try": "^1.2.1",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^6.0.1",
     "loader.js": "^4.2.3",
