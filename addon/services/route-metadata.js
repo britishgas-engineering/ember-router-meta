@@ -1,8 +1,8 @@
 import dsl from '../utils/dsl-route-extend';
-import Ember from 'ember';
-const {copy} = Ember;
+import {copy} from 'ember-copy';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
   _routes: {},
   _attributes: [
     'pageName'
