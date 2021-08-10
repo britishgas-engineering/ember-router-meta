@@ -16,10 +16,23 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
+    emberRouterMeta: {
+      defaultAttrs: [
+        'pageName',
+        'pageType',
+        'section'
+      ]
+    },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      emberRouterMeta: {
+        defaultAttrs: [
+          'pageName',
+          'pageType',
+          'section'
+        ]
+      }
     }
   };
 
