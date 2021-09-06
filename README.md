@@ -2,6 +2,14 @@
 
 This add on is to help users add meta data to routes in their ember applications.
 
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+
 ## Using the add on
 
 The add on extends the `this.route()` function that is used in the `router.js` file to define your routes.
@@ -61,7 +69,8 @@ To edit a route's data at run time `editRoute()` can be used to change a specifi
 ##
 
 
-## Installation
+Installation
+------------------------------------------------------------------------------
 
 * `git clone <repository-url>` this repository
 * `cd ember-router-meta`
@@ -77,6 +86,8 @@ To edit a route's data at run time `editRoute()` can be used to change a specifi
 * `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## Building
 
