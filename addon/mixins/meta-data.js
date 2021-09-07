@@ -1,8 +1,9 @@
-import Ember from 'ember';
-const {Mixin, inject, getOwner} = Ember;
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
+import { getOwner } from '@ember/application';
 
 export default Mixin.create({
-  routeMetadata: inject.service(),
+  routeMetadata: service(),
 
   _currentRouteName() {
     let container = getOwner(this);

@@ -1,5 +1,5 @@
 import dsl from '../utils/dsl-route-extend';
-import {copy} from 'ember-copy';
+import { copy } from 'ember-copy';
 import Service from '@ember/service';
 
 export default Service.extend({
