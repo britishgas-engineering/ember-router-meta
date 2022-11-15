@@ -4,63 +4,64 @@ import { initialize } from 'dummy/instance-initializers/route-metadata';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 
-module('Unit | Instance Initializer | route metadata', {
-  beforeEach() {
+module('Unit | Instance Initializer | route metadata', function(hooks) {
+  hooks.beforeEach(function() {
     run(() => {
       this.application = Application.create();
       this.appInstance = this.application.buildInstance();
     });
-  },
-  afterEach() {
+  });
+
+  hooks.afterEach(function() {
     run(this.appInstance, 'destroy');
     destroyApp(this.application);
-  }
-});
+  });
 
-test('Ember Router Meta enviroment varibles set', function(assert) {
-  let callback = sinon.spy()
+  test('Ember Router Meta enviroment varibles set', function(assert) {
+    let callback = sinon.spy()
 
-  this.appInstance.resolveRegistration = function () {
-    return {
-      emberRouterMeta: {
-        defaultAttrs: [
-          'pageName',
-          'section',
-          'pageType'
-        ]
+    this.appInstance.resolveRegistration = function () {
+      return {
+        emberRouterMeta: {
+          defaultAttrs: [
+            'pageName',
+            'section',
+            'pageType'
+          ]
+        }
+      };
+    };
+
+    this.appInstance.lookup = function() {
+      return {
+        setAttrs () {
+          callback()
+        },
+        _registerRoute() {
+          return null;
+        }
       }
     };
-  };
 
-  this.appInstance.lookup = function() {
-    return {
-      setAttrs () {
-        callback()
-      },
-      _registerRoute() {
-        return null;
+    initialize(this.appInstance);
+    assert.equal(callback.called, true, 'callback should run once');
+  });
+
+  test('Ember Router Meta enviroment varibles not set', function(assert) {
+    let callback = sinon.spy()
+
+    this.appInstance.lookup = function() {
+      return {
+        setAttrs () {
+          callback()
+        },
+        _registerRoute() {
+          return null;
+        }
       }
-    }
-  };
+    };
 
-  initialize(this.appInstance);
-  assert.equal(callback.called, true, 'callback should run once');
-});
-
-test('Ember Router Meta enviroment varibles not set', function(assert) {
-  let callback = sinon.spy()
-
-  this.appInstance.lookup = function() {
-    return {
-      setAttrs () {
-        callback()
-      },
-      _registerRoute() {
-        return null;
-      }
-    }
-  };
-
-  initialize(this.appInstance);
-  assert.equal(callback.called, false, 'callback should not run');
+    initialize(this.appInstance);
+    assert.equal(callback.called, false, 'callback should not run');
+  });
 });
