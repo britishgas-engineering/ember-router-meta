@@ -34,7 +34,7 @@ module('Unit | Utility | dsl-route-extend', function () {
         dsl.route('dashboard', { pageName: 'DashBoard' });
       });
     });
-    assert.equal(
+    assert.strictEqual(
       callback.callCount,
       4,
       '_registerRoute and mockRouter called twice'
@@ -74,12 +74,12 @@ module('Unit | Utility | dsl-route-extend', function () {
         dsl.route('dashboard', { pageName: 'DashBoard', resetNamespace: true });
       });
     });
-    assert.equal(
+    assert.strictEqual(
       callback.callCount,
       4,
       '_registerRoute and mockRouter called twice'
     );
-    assert.equal(
+    assert.strictEqual(
       names[0],
       'dashboard',
       'name space has been reset so name doesnt not contain parent'

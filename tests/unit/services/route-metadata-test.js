@@ -22,7 +22,7 @@ module('Unit | Service | route metadata', function (hooks) {
     try {
       service._registerRoute(route);
     } catch (e) {
-      assert.equal(
+      assert.strictEqual(
         e,
         `ember-router-meta: Route ${route} has already been registered`,
         'Expect route already registered error'
@@ -37,7 +37,7 @@ module('Unit | Service | route metadata', function (hooks) {
     try {
       service.editRoute(route);
     } catch (e) {
-      assert.equal(
+      assert.strictEqual(
         e,
         `ember-router-meta: Route: ${route} was not found`,
         'Route not found error should be shown'
@@ -55,7 +55,7 @@ module('Unit | Service | route metadata', function (hooks) {
       val = 'Dashboard';
     service.set('_routes', _routes);
     service.editRoute(route, key, val);
-    assert.equal(
+    assert.strictEqual(
       service.getRoute(route).pageName,
       val,
       'Route has been edited'
@@ -158,7 +158,7 @@ module('Unit | Service | route metadata', function (hooks) {
     try {
       service.getMetaDataByRoute(route);
     } catch (e) {
-      assert.equal(e, `ember-router-meta: Route is Null or undefined`);
+      assert.strictEqual(e, `ember-router-meta: Route is Null or undefined`);
     }
   });
 
@@ -173,7 +173,7 @@ module('Unit | Service | route metadata', function (hooks) {
       route = 'test.name';
     service.set('_routes', _routes);
     service.setAttrs(attrsNames);
-    assert.equal(
+    assert.strictEqual(
       service.getMetaDataByRoute(route),
       null,
       'If the route is not found null is returned'
@@ -187,7 +187,7 @@ module('Unit | Service | route metadata', function (hooks) {
     try {
       service.setAttrs(null);
     } catch (e) {
-      assert.equal(
+      assert.strictEqual(
         e,
         'ember-router-meta: Attrs could not be set, the array must contain at least one attribute',
         'Correct Error thrown'
@@ -202,7 +202,7 @@ module('Unit | Service | route metadata', function (hooks) {
     try {
       service.setAttrs([]);
     } catch (e) {
-      assert.equal(
+      assert.strictEqual(
         e,
         'ember-router-meta: Attrs could not be set, the array must contain at least one attribute',
         'Correct Error thrown'

@@ -9,7 +9,7 @@
 export default {
   routeMetadata: null,
   oldRoute: Ember.RouterDSL.prototype.route,
-  init (metaDataService) {
+  init(metaDataService) {
     this.setRouterDSLProto();
 ```
 
@@ -37,19 +37,6 @@ export default {
   },
   setRouterDSLProto() {
     Ember.RouterDSL.prototype.route = this.route;
-  }
+  },
 };
-```
-
-### Unknown Global
-
-**Global**: `Ember.inject`
-
-**Location**: `addon/mixins/meta-data.js` at line 2
-
-```js
-import Ember from 'ember';
-const {Mixin, inject, getOwner} = Ember;
-
-export default Mixin.create({
 ```

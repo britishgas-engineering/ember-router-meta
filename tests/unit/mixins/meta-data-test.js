@@ -24,7 +24,7 @@ module('Unit | Mixin | meta data', function () {
       expectedResult = 'New Page Name';
 
     let result = subject.editMetaData(route, 'pageName', 'New Page Name');
-    assert.equal(
+    assert.strictEqual(
       expectedResult,
       result.pageName,
       'Route has correctly changed and been returned'
@@ -50,7 +50,7 @@ module('Unit | Mixin | meta data', function () {
       expectedResult = 'Section Name';
 
     let result = subject.editMetaData(route, 'section', 'Section Name');
-    assert.equal(
+    assert.strictEqual(
       expectedResult,
       result.section,
       'New meta tag section has been added to route'
