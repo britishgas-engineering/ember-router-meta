@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-new-mixins */
 import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
 import { getOwner } from '@ember/application';
@@ -20,5 +21,5 @@ export default Mixin.create({
   editMetaData(route, key, val) {
     this.routeMetadata.editRoute(route, key, val);
     return this.routeMetadata.getMetaDataByRoute(route);
-  }
+  },
 });
