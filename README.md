@@ -19,6 +19,11 @@ This can be used with any attribute name, providing that ember does not currentl
 ## route-metadata Service
 
 The service `route-metadata` will store the meta data of each route, so will need to be injected into the route in order to access the data.
+## Compatibility
+
+* Ember.js v3.28 or above
+* Ember CLI v3.28 or above
+* Node.js v14 or above
 
 `routeMetadata: Ember.inject.service();`
 
@@ -33,6 +38,7 @@ The second parameter `attrs` is used to specify the attribute's you would like.
 If the child does not have a specified attribute it will check it's parent routes to inherit that attribute.
 
 By default the only attribute that will be returned is the pageName, this can be changed by using `setAttrs()` to override `pageName` as the default attribute. Or by adding your own default list in the environment.js file.
+## Installation
 
 ```
 ...
@@ -49,6 +55,7 @@ By default the only attribute that will be returned is the pageName, this can be
 ### editRoute(route, key, val)
 
 To edit a route's data at run time `editRoute()` can be used to change a specific attribute.
+## Usage
 
 * @param {String} route The route you wish to edit edit
 * @param {String} key Key of attribute to change
