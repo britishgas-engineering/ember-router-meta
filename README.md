@@ -21,8 +21,8 @@ This can be used with any attribute name, providing that ember does not currentl
 The service `route-metadata` will store the meta data of each route, so will need to be injected into the route in order to access the data.
 ## Compatibility
 
-* Ember.js v3.28 or above
-* Ember CLI v3.28 or above
+* Ember.js v4.4 or above
+* Ember CLI v4.4 or above
 * Node.js v14 or above
 
 `routeMetadata: Ember.inject.service();`

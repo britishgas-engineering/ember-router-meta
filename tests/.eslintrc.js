@@ -1,8 +1,14 @@
 /* eslint-disable no-undef */
 module.exports = {
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 'latest',
     sourceType: 'module',
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+      ],
+    },
   },
   globals: {
     sinon: true,
@@ -11,7 +17,7 @@ module.exports = {
     select: true,
     server: true,
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: 'eslint:recommended',
   env: {
     embertest: true,
