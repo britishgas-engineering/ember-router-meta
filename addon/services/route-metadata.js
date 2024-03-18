@@ -1,16 +1,14 @@
 import dsl from '../utils/dsl-route-extend';
-import {copy} from 'ember-copy';
+import { copy } from 'ember-copy';
 import Service from '@ember/service';
 
-export default Service.extend({
-  _routes: {},
-  _attributes: [
-    'pageName'
-  ],
-  init() {
+export default class RouteMetadatService extends Service {
+  _routes = {};
+  _attributes = ['pageName'];
+  constructor(...args) {
+    super(...args);
     this._routes = {};
-    this._super();
-  },
+  }
   /**
    * Set the default meta attributes that should be found
    * @param {string[]} attrs Array of strings of the meta property names
@@ -22,7 +20,7 @@ export default Service.extend({
     } else {
       throw `ember-router-meta: Attrs could not be set, the array must contain at least one attribute`;
     }
-  },
+  }
 
   /**
    * Register route metadata
@@ -30,22 +28,22 @@ export default Service.extend({
    * @param {Object} options attributes for the route
    * @return {object} Returns the route metadata object
    */
-  _registerRoute (route, options = {}) {
+  _registerRoute(route, options = {}) {
     if (this._routes[route]) {
       throw `ember-router-meta: Route ${route} has already been registered`;
     } else {
       this._routes[route] = options;
     }
     return this._routes[route];
-  },
+  }
   /**
    * Find the parent of the route
    * @param {String} route Name of the route
    * @return {object} Parent of the route if found or null
    */
-  _getParentRoute (route = '') {
+  _getParentRoute(route = '') {
     return route.substring(0, route.lastIndexOf('.')) || null;
-  },
+  }
   /**
    * Create a object with only the attr you want
    * @param {Object} metaData metadata object you wish to edit
@@ -60,7 +58,7 @@ export default Service.extend({
       });
     }
     return metaData ? obj : null;
-  },
+  }
   /**
    * Get route by route Name
    * @param {String} route Name of route
@@ -68,7 +66,7 @@ export default Service.extend({
    */
   getRoute(route) {
     return this._routes[route];
-  },
+  }
   /**
    * Gets the meta data of a route using its name with optional parameter for specific metaData keys.
    * if a route is missing an attribute it will bubble up and take its parent's if applicable
@@ -108,7 +106,7 @@ export default Service.extend({
       }
     }
     return this._removeUnnecessaryAttrs(metaData, attrs);
-  },
+  }
   /**
    * Edit the meta data of a defined route
    * @param {String} route The route you wish to edit edit
@@ -123,17 +121,17 @@ export default Service.extend({
     } else {
       throw `ember-router-meta: Route: ${route} was not found`;
     }
-  },
+  }
   optionsToString(options) {
     let str = '';
     options.forEach((key) => {
       str += `${key}, `;
     });
     return str;
-  },
-  destroy() {
+  }
+  willDestroy() {
     this._routes = {};
     dsl.destroy();
-    this._super();
+    super.willDestroy();
   }
-});
+}

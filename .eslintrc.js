@@ -1,106 +1,56 @@
+'use strict';
+
 module.exports = {
-  extends: 'eslint:recommended',
+  root: true,
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module'
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+      ],
+    },
   },
-  parser: 'babel-eslint',
+  plugins: ['ember'],
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended',
+    'plugin:prettier/recommended',
+  ],
   env: {
     browser: true,
-    es6: true,
-    node: true
   },
-  globals: {
-    server: true
-  },
-  rules: {
-    eqeqeq: 'error',
-    'no-debugger': 'error',
-    'no-dupe-args': 'error',
-    'no-dupe-keys': 'error',
-    'no-extra-parens': ['error', 'all'],
-    'no-extra-semi': 'error',
-    'no-func-assign': 'error',
-    'no-inner-declarations': ['error', 'both'],
-    'valid-jsdoc': 'error',
-    'block-scoped-var': 'error',
-    'consistent-return': 'error',
-    'default-case': 'error',
-    'dot-notation': 'error',
-    'no-alert': 'warn',
-    'no-case-declarations': 'error',
-    'no-eq-null': 'error',
-    'no-eval': 'error',
-    'no-extra-bind': 'error',
-    'no-floating-decimal': 'error',
-    'no-implicit-globals': 'error',
-    'no-lone-blocks': 'error',
-    'no-loop-func': 'error',
-    'no-multi-spaces': 'error',
-    'no-new-func': 'error',
-    'no-new-wrappers': 'error',
-    'no-new': 'error',
-    'no-octal': 'error',
-    'no-redeclare': 'error',
-    'no-self-assign': 'error',
-    'no-self-compare': 'error',
-    'no-unused-expressions': 'error',
-    'no-useless-call': 'error',
-    'no-useless-concat': 'error',
-    'vars-on-top': 'error',
-    'no-use-before-define': ['error', {functions: false}],
-    'array-bracket-spacing': ['error', 'never'],
-    'block-spacing': ['error', 'never'],
-    'brace-style': 'error',
-    camelcase: 'error',
-    'comma-dangle': ['error', 'never'],
-    'comma-spacing': ['error', {before: false, after: true}],
-    'comma-style': ['error', 'last'],
-    'computed-property-spacing': ['error', 'never'],
-    'eol-last': 'error',
-    indent: ['error', 2],
-    'key-spacing': [
-      'error', {
-        beforeColon: false,
-        afterColon: true,
-        mode: 'strict'
-      }
-    ],
-    'keyword-spacing': ['error', {before: true}],
-    'linebreak-style': ['error', 'unix'],
-    'max-len': [
-      'error',
-      120,
-      {
-        ignoreTrailingComments: true,
-        ignoreUrls: true
-      }
-    ],
-    'new-cap': ['error', {newIsCap: true, capIsNew: false}],
-    'no-lonely-if': 'error',
-    'no-multiple-empty-lines': ['error', {max: 1, maxEOF: 1}],
-    'no-plusplus': 'error',
-    'no-spaced-func': 'error',
-    'no-trailing-spaces': 'error',
-    'no-unneeded-ternary': 'error',
-    'no-nested-ternary': 'error',
-    'no-whitespace-before-property': 'error',
-    'object-curly-spacing': ['error', 'never'],
-    'one-var-declaration-per-line': ['error', 'initializations'],
-    'operator-linebreak': ['warn', 'after'],
-    'quote-props': ['error', 'as-needed'],
-    quotes: [2, 'single', {avoidEscape: true, allowTemplateLiterals: true}],
-    'semi-spacing': ['error', {before: false, after: true}],
-    semi: ['error', 'always'],
-    'space-before-blocks': 'error',
-    'space-in-parens': ['error', 'never'],
-    'space-infix-ops': 'error',
-    'arrow-parens': ['error', 'always'],
-    'arrow-spacing': ['error', {before: true, after: true}],
-    'no-const-assign': 'error',
-    'no-dupe-class-members': 'error',
-    'no-duplicate-imports': 'error',
-    'template-curly-spacing': 'error',
-    curly: 'error'
-  }
+  rules: {},
+  overrides: [
+    // node files
+    {
+      files: [
+        './.eslintrc.js',
+        './.prettierrc.js',
+        './.stylelintrc.js',
+        './.template-lintrc.js',
+        './ember-cli-build.js',
+        './index.js',
+        './testem.js',
+        './blueprints/*/index.js',
+        './config/**/*.js',
+        './tests/dummy/config/**/*.js',
+      ],
+      parserOptions: {
+        sourceType: 'script',
+      },
+      env: {
+        browser: false,
+        node: true,
+      },
+      extends: ['plugin:n/recommended'],
+    },
+    {
+      // test files
+      files: ['tests/**/*-test.{js,ts}'],
+      extends: ['plugin:qunit/recommended'],
+    },
+  ],
 };

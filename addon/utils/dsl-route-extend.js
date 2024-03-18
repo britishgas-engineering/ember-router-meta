@@ -2,7 +2,7 @@ import Ember from 'ember';
 export default {
   routeMetadata: null,
   oldRoute: Ember.RouterDSL.prototype.route,
-  init (metaDataService) {
+  init(metaDataService) {
     this.setRouterDSLProto();
     let oldRoute = this.oldRoute;
     this.route = function (name, options = {}) {
@@ -19,7 +19,7 @@ export default {
   },
   setRouterDSLProto() {
     Ember.RouterDSL.prototype.route = this.route;
-  }
+  },
 };
 
 function canNest(dsl) {
